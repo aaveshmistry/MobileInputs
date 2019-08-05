@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int moveSpeed = 4;
-    public Joystick joystick;
+    public Joystick moveJoystick;
+    public Joystick rotateJoystick;
   
     
-    void Start()
+    void Update()
     {
-        this.transform.Translate = new Vector3(joystick.Horizontal, joystick.Vertical * moveSpeed, 0f) * 5f * Time.deltaTime, Space.World;
+        this.transform.Translate(new Vector3(moveJoystick.Horizontal, moveJoystick.Vertical, 0f) * moveSpeed * Time.deltaTime, Space.World);
+
+        this.transform.Rotate(new Vector3(0,0, rotateJoystick.Horizontal) * moveSpeed * Time.deltaTime, moveSpeed);
     }
 
     
